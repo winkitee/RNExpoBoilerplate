@@ -8,12 +8,16 @@
 'use strict';
 
 import React from 'react';
-import { View, Text, StyleSheet, Alert, Button } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import * as firebase from 'firebase';
 import Expo from 'expo';
 import { connect } from 'react-redux';
-
-const APP_ID = '214793565713294';
+import { login } from '../actions';
+import {
+  FACEBOOK_APP_ID,
+  ANDROID_CLIENT_ID,
+  IOS_CLIENT_ID
+} from './config';
 
 class Login extends React.Component {
   static navigationOptions = {
@@ -28,66 +32,41 @@ class Login extends React.Component {
   }
 
   async FacebookLogIn() {
-    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(APP_ID, {
+    const { type, token } =
+    await Expo.Facebook.logInWithReadPermissionsAsync(FACEBOOK_APP_ID, {
         permissions: ['public_profile', 'email'],
         behavior: 'native'
     });
     if (type === 'success') {
-      const response = await fetch(
-        `https://graph.facebook.com/me?access_token=${token}`);
-      // Alert.alert(
-      //   'Logged in!',
-      //   `Hi ${(await response.json()).name}!`,
-      // );
-      const result = await response.json();
-      console.log(result);
-      console.log(token);
-
       const credential = firebase.auth.FacebookAuthProvider.credential(token);
-      firebase.auth().signInWithCredential(credential)
-        .then(() => {
-          Alert.alert('logged');
-          this.setState({ user: 'hi logged' });
-        }).catch((err) => {
-          console.log(err);
-        });
+      firebase.auth().signInWithCredential(credential).then(() => {
+        this.props.login();
+      }).catch((err) => {
+        console.log(err);
+      });
     }
   }
 
   async GoogleLogIn() {
     try {
       const result = await Expo.Google.logInAsync({
-        androidClientId: '693864273617-biv2tgqc7n74jd4f8b0i33rvk0ab662g.apps.googleusercontent.com',
-        iosClientId: '693864273617-n19r6tfdg9bj2qoh2m56nlseqcd06s0p.apps.googleusercontent.com',
+        androidClientId: ANDROID_CLIENT_ID,
+        iosClientId: IOS_CLIENT_ID,
         scopes: ['profile', 'email'],
         behavior: 'web',
       });
 
       if (result.type === 'success') {
-        console.log(result);
-        console.log(result.accessToken);
         const credential = firebase.auth.GoogleAuthProvider.credential(result.idToken);
-        firebase.auth().signInWithCredential(credential)
-          .then(() => {
-            Alert.alert('logged');
-            this.setState({ user: 'hi google logged' });
-          }).catch((err) => {
-            console.log(err);
-          });
-        // return result.accessToken;
+        firebase.auth().signInWithCredential(credential).then(() => {
+          this.props.login();
+        }).catch((err) => {
+          console.log(err);
+        });
       }
-        console.log('cancelled');
-        return { cancelled: true };
     } catch (e) {
-      console.log(e);
-      return { error: true };
+      alert(e);
     }
-  }
-
-  logOut() {
-    firebase.auth().signOut();
-    alert('logOut');
-    this.setState({ user: '' });
   }
 
   render() {
@@ -102,10 +81,6 @@ class Login extends React.Component {
         <Button
           title="Login with Google"
           onPress={() => this.GoogleLogIn()}
-        />
-        <Button
-          title="Logout"
-          onPress={() => this.logOut()}
         />
       </View>
     );
@@ -124,4 +99,4 @@ function mapStateToProps(state) {
   return { state };
 }
 
-export default connect(mapStateToProps, {})(Login);
+export default connect(mapStateToProps, { login })(Login);

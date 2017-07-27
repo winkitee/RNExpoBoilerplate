@@ -8,17 +8,28 @@
 'use strict';
 
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
+import * as firebase from 'firebase';
 
 class Main extends React.Component {
   static navigationOptions = {
     title: 'Main',
   }
 
+  logOut() {
+    firebase.auth().signOut();
+    alert('logOut');
+    this.setState({ user: '' });
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text>Main</Text>
+        <Button
+          title="Logout"
+          onPress={() => this.logOut()}
+        />
       </View>
     );
   }

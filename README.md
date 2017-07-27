@@ -54,7 +54,7 @@ ReactNative Boilerplate:
 
   ![Image of Facebook](https://firebasestorage.googleapis.com/v0/b/rnexpoboilerplate.appspot.com/o/facebook_fbID.png?alt=media&token=7933bd6d-ab99-4478-b620-02ee2627da5f)
 
-  #### 4. ~/App.json에 fbID 추가
+  #### 4. ~/App.json에 fbScheme 추가
   ```javascript
   {
     "expo": {
@@ -94,6 +94,12 @@ ReactNative Boilerplate:
 
    ![Image of Facebook](https://firebasestorage.googleapis.com/v0/b/rnexpoboilerplate.appspot.com/o/android_key_hash.png?alt=media&token=48103159-bec4-427f-8ce9-a06c975217f2)
 
+   #### 6. 페이스북 앱 아이디 입력
+ ~/src/login/config.js 11:1
+ ```javascript
+ const FACEBOOK_APP_ID = 'YOUR_FACEBOOK_APPID';
+ ```
+
 ### 구글 로그인 설정하기
 ---
 [Expo Google Docs 참고](https://docs.expo.io/versions/v19.0.0/sdk/google.html)
@@ -116,8 +122,8 @@ ReactNative Boilerplate:
    ![Image of Google](https://firebasestorage.googleapis.com/v0/b/rnexpoboilerplate.appspot.com/o/android_id_add.png?alt=media&token=bf2345fe-9a18-4332-8928-8c6d94271acf)
 
    #### 2. 클라이언트 아이디 입력
- ~/src/login/googleClientId.js 10:1
+ ~/src/login/config.js 14:1
  ```javascript
- const androidClientId = 'YOUR_ANDROID_CLIENTID';  
- const iosClientId = 'YOUR_IOS_CLIENTID';
+ const ANDROID_CLIENT_ID = 'YOUR_ANDROID_CLIENTID';  
+ const IOS_CLIENT_ID = 'YOUR_IOS_CLIENTID';
  ```

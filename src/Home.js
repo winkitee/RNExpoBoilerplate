@@ -15,6 +15,10 @@ import LoginScreen from './login/root';
 import AppNavigator from './navigator/stack';
 
 class Home extends React.Component {
+  componentWillMount() {
+    this.props.logged();
+  }
+
   props: {
     isLoggedIn: boolean;
   }

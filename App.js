@@ -8,11 +8,12 @@
 'use strict';
 
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import * as firebase from 'firebase';
 import { Constants } from 'expo';
 import { Provider } from 'react-redux';
 
+import * as StyleSheet from './src/common/StyleSheet';
 import configureStore from './src/store/configureStore';
 import Home from './src/Home';
 
@@ -61,8 +62,10 @@ function app(): ReactClass<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Constants.statusBarHeight,
-  }
+    android: {
+      paddingTop: Constants.statusBarHeight,
+    },
+  },
 });
 
 export default app();
