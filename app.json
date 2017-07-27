@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "RNExpoBoilerplate",
+    "icon": "./app-icon.png",
+    "version": "1.0.0",
+    "sdkVersion": "19.0.0",
+    "facebookScheme": "fb214793565713294",
+    "ios": {
+      "bundleIdentifier": "com.yourcompany.yourappname"
+    },
+    "android": {
+      "package": "com.yourcompany.yourappname"
+    }
+  }
+}

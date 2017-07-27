@@ -1,0 +1,49 @@
+{
+  "extends": "eslint-config-rallycoding",
+
+  "globals": {
+    "__BUNDLE_START_TIME__": false,
+    "__DEV__": true,
+    "__dirname": false,
+    "__filename": false,
+    "__fbBatchedBridgeConfig": false,
+    "alert": false,
+    "cancelAnimationFrame": false,
+    "clearImmediate": true,
+    "clearInterval": false,
+    "clearTimeout": false,
+    "console": false,
+    "document": false,
+    "escape": false,
+    "exports": false,
+    "global": false,
+    "jest": false,
+    "pit": false,
+    "Map": true,
+    "module": false,
+    "navigator": false,
+    "process": false,
+    "Promise": false,
+    "requestAnimationFrame": true,
+    "require": false,
+    "Set": true,
+    "setImmediate": true,
+    "setInterval": false,
+    "setTimeout": false,
+    "window": false,
+    "FormData": true,
+    "XMLHttpRequest": false,
+    "fetch": false,
+
+    // Flow "known-globals" annotations:
+    "ReactElement": false,
+    "ReactClass": false,
+    "Class": false
+  },
+
+  "rules": {
+    "prefer-const": 1,
+    "global-require": 1,
+    "react/jsx-closing-bracket-location": 0,
+  }
+}
