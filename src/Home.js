@@ -21,6 +21,7 @@ class Home extends React.Component {
 
   props: {
     isLoggedIn: boolean;
+    logged: Function;
   }
 
   render() {

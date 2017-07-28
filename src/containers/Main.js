@@ -19,7 +19,6 @@ class Main extends React.Component {
   logOut() {
     firebase.auth().signOut();
     alert('logOut');
-    this.setState({ user: '' });
   }
 
   render() {

@@ -10,7 +10,9 @@
 import { StackNavigator } from 'react-navigation';
 
 import Login from './Login';
+import Auth from './Auth';
 
 export default StackNavigator({
-  Home: { screen: Login }
+  Login: { screen: Login },
+  Auth: { screen: Auth },
 });
